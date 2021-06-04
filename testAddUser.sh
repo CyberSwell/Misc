@@ -1,12 +1,20 @@
 #!/bin/bash
 
-########## DO NOT EDIT BELOW ##########
+#This script was made to facilitate with some user management responsibilities for some servers. The script aims to accomplish the following:
+#Add an entry for a specified user in /etc/security/access.conf
+#Add an entry for a specified user in /etc/sudoers.d/sudo-users
+#Create a /home directory for the user, along with a .ssh/ directory
+#Read a public key from a file and add it to .ssh/authorized-keys
+#Grant the user ownership of the directory
+
+
+########## VARIABLE DEFINITIONS ########## 
 user=""
 key=""
 keyFile=""
 helpMsg='Usage: addUser.sh -u [username] -f [keyFile]'
 
-### Function Definitions
+########## Function Definitions ########## 
 
 #Check if amount of args are correct
 checkArgs(){
@@ -82,7 +90,7 @@ buyHouse() {
         [ "$user" == "$(ls -ld /home/$user/ | awk '{print $3}')" ] && echo "[-] User '$user' already owns /home/$user/', skipping this step." || (chown -R $user:access /home/$username || echo "[-] Issue while attempting to grant access to home directory for '$user'")
 }
 
-#### MAIN METHOD
+########### MAIN METHOD ########## 
 echo "Beginning SSH configuration for "$HOSTNAME"..."
 checkArgs "$@" && parseParams "$@" || exit 1
 readKey || exit 1
