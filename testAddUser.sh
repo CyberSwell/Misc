@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#Sorry if this script sucks. I tried my best.
-#~Jameswell Zhang (THON 2022 Systems Lead)
-
 ########## DO NOT EDIT BELOW ##########
 user=""
 key=""
